@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # ------------------------
 # Load environment variables
@@ -22,7 +22,7 @@ export $(grep -v '^#' "$ENV_FILE" | xargs)
 # ------------------------
 # Validate required variables
 # ------------------------
-REQUIRED_VARS=("GITHUB_USER" "REPO_NAME" "CLUSTER_NAME")
+REQUIRED_VARS=("GITHUB_USER" "REPO_NAME" "CLUSTER_NAME" "GITHUB_TOKEN")
 for VAR in "${REQUIRED_VARS[@]}"; do
   if [[ -z "${!VAR}" ]]; then
     echo "❌ Missing required variable: $VAR"
@@ -31,55 +31,49 @@ for VAR in "${REQUIRED_VARS[@]}"; do
   fi
 done
 
-# Derived values
-CLUSTER_PATH="clusters/$CLUSTER_NAME"
-GITHUB_SSH_URL="git@github.com:$GITHUB_USER/$REPO_NAME.git"
-BRANCH="${BRANCH:-main}"
-KEY_FILE="$HOME/.ssh/flux_rsa"
+# ------------------------
+# Show expected GitHub PAT scopes
+# ------------------------
+echo ""
+echo "🔐 Ensure your GitHub PAT has the following scopes:"
+echo "   - repo (to include 'Contents', 'Commit statuses')"
+echo "   - admin:repo_hook (for 'Webhooks')"
+echo ""
 
 # ------------------------
-# Create RSA SSH Key (if needed)
-# ------------------------
-echo "📁 Checking for existing SSH RSA key..."
-if [[ ! -f "$KEY_FILE" ]]; then
-  echo "🔑 Generating new RSA SSH key at $KEY_FILE"
-  ssh-keygen -t rsa -b 4096 -f "$KEY_FILE" -N "" -C "flux"
-else
-  echo "✅ RSA SSH key already exists at $KEY_FILE"
-fi
-
-# ------------------------
-# Install Flux CLI (if not installed)
+# Install Flux CLI if missing
 # ------------------------
 if ! command -v flux &> /dev/null; then
   echo "⬇️ Installing Flux CLI..."
   curl -s https://fluxcd.io/install.sh | sudo bash
 else
-  echo "✅ Flux CLI already installed"
+  echo "✅ Flux CLI is already installed"
 fi
 
 # ------------------------
-# Bootstrap Flux
+# Define variables
 # ------------------------
-echo "🚀 Bootstrapping Flux with GitHub SSH..."
+BRANCH="${BRANCH:-main}"
+CLUSTER_PATH="clusters/$CLUSTER_NAME"
+
+# ------------------------
+# Bootstrap Flux using GitHub PAT
+# ------------------------
+echo "🚀 Bootstrapping Flux with GitHub PAT..."
 
 flux bootstrap github \
   --owner="$GITHUB_USER" \
   --repository="$REPO_NAME" \
   --branch="$BRANCH" \
   --path="$CLUSTER_PATH" \
-  --private-key-file="$KEY_FILE" \
-  --hostname=github.com \
-  --ssh-hostname=github.com \
-  --personal
+  --personal \
+  --token-auth \
+  --components-extra=image-reflector-controller,image-automation-controller
 
 # ------------------------
 # Done
 # ------------------------
-echo "🎉 Flux bootstrap completed!"
 echo ""
-echo "📎 Add this public key to your GitHub repo as a Deploy Key:"
-echo ""
-cat "$KEY_FILE.pub"
-echo ""
-echo "🔗 GitHub > $REPO_NAME > Settings > Deploy keys > Add deploy key (✓ Allow write access)"
+echo "✅ Flux bootstrap complete!"
+echo "📁 Cluster state is now managed at '$CLUSTER_PATH' in your GitHub repo."
+
