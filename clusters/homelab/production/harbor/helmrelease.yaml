@@ -26,8 +26,9 @@ spec:
           chartmuseum: chartmuseum.towelie.dev
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: web
-          ingress.kubernetes.io/proxy-body-size: "1Gb"
-          nginx.ingress.kubernetes.io/proxy-body-size: "1Gb"
+          traefik.ingress.kubernetes.io/router.request.body.limit: 1Gi
+          ingress.kubernetes.io/proxy-body-size: 1Gi
+          nginx.ingress.kubernetes.io/proxy-body-size: 1Gi
         ingressClass: traefik
         tls:
           enabled: false
