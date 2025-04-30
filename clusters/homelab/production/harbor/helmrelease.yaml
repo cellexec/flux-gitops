@@ -24,10 +24,10 @@ spec:
           notary: notary.homelab.towelie.dev
           chartmuseum: chartmuseum.homelab.towelie.dev
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.entrypoints: web
         ingressClass: traefik
         tls:
-          enabled: true
+          enabled: false
           secretName: harbor-tls-secret
 
 
