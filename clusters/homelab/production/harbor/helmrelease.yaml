@@ -8,7 +8,7 @@ spec:
   releaseName: harbor
   chart:
     spec:
-      chart: harbor/harbor
+      chart: harbor
       version: 1.17.0
       sourceRef:
         kind: HelmRepository
