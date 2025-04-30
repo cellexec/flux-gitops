@@ -30,5 +30,6 @@ spec:
         tls:
           enabled: false
     harborAdminPassword: "YNqP7kkR3Hcf82"
+    logLevel: debug
 
 
