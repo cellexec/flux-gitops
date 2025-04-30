@@ -28,6 +28,6 @@ spec:
         ingressClass: traefik
         tls:
           enabled: false
-          secretName: harbor-tls-secret
+    harborAdminPassword: "YNqP7kkR3Hcf82"
 
 
