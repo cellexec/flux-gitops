@@ -15,6 +15,7 @@ spec:
         name: harbor
         namespace: flux-system
   values:
+    externalURL: https://harbor.towelie.dev
     expose:
       type: ingress
       ingress:
