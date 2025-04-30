@@ -4,6 +4,7 @@ metadata:
   name: harbor
   namespace: production
 spec:
+  interval: 5m0s
   releaseName: harbor
   chart:
     spec:
