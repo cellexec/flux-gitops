@@ -13,7 +13,7 @@ spec:
       http:
         paths:
           - path: /harbor
-            pathType: Prefix
+            pathType: Exact
             backend:
               service:
                 name: harbor-core
