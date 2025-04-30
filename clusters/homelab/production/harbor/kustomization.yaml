@@ -1,11 +1,6 @@
 apiVersion: fluxcd.io/v1
 kind: Kustomization
-metadata:
-  name: harbor
-spec:
-  resources:
-    - helmrepository.yaml
-    - helmrelease.yaml
-  interval: 5m
-  prune: true
+resources:
+  - helmrepository.yaml
+  - helmrelease.yaml
 
