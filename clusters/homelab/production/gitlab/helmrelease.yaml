@@ -18,3 +18,6 @@ spec:
       edition: ce
       hosts:
         domain: towelie.dev
+      certmanager-issuer:
+        email: mail@towelie.dev
+
