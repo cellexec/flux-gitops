@@ -1,17 +1,13 @@
-apiVersion: networking.k8s.io/v1
+--apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: harbor
   namespace: production
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.entrypoints: web
     traefik.ingress.kubernetes.io/router.middlewares: production-strip-harbor-prefix@kubernetescrd
 spec:
   ingressClassName: traefik
-  tls:
-    - hosts:
-        - homelab.towelie.dev
-      secretName: harbor-tls-secret
   rules:
     - host: homelab.towelie.dev
       http:
