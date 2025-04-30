@@ -23,15 +23,15 @@ spec:
         class: traefik
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
+      registry:
+        enabled: false
+      minio:
+        enabled: false
+      gitlab-runner:
+        install: true
     gitlab:
       webservice:
         replicas: 1
       gitaly:
         replicas: 1
-    registry:
-      enabled: false
-    minio:
-      enabled: false
-    gitlab-runner:
-      install: true
 
