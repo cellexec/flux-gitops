@@ -18,20 +18,3 @@ spec:
       edition: ce
       hosts:
         domain: towelie.dev
-      ingress:
-        configureCertmanager: false
-        class: traefik
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-prod
-      registry:
-        enabled: false
-      minio:
-        enabled: false
-      gitlab-runner:
-        install: true
-    gitlab:
-      webservice:
-        replicas: 1
-      gitaly:
-        replicas: 1
-
