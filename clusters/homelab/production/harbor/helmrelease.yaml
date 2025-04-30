@@ -20,9 +20,9 @@ spec:
       ingress:
         enabled: true
         hosts:
-          core: harbor.homelab.towelie.dev
-          notary: notary.homelab.towelie.dev
-          chartmuseum: chartmuseum.homelab.towelie.dev
+          core: harbor.towelie.dev
+          notary: notary.towelie.dev
+          chartmuseum: chartmuseum.towelie.dev
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: web
         ingressClass: traefik
