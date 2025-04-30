@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: harbor
+  namespace: harbor
+spec:
+  releaseName: harbor
+  chart:
+    spec:
+      chart: harbor/harbor
+      version: 1.10.x
+      sourceRef:
+        kind: HelmRepository
+        name: harbor
+        namespace: flux-system
+  values:
+    expose:
+      type: ingress
+      ingress:
+        enabled: true
+        hosts:
+          core: harbor.homelab.towelie.dev
+          notary: notary.homelab.towelie.dev
+          chartmuseum: chartmuseum.homelab.towelie.dev
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        ingressClass: traefik
+        tls:
+          enabled: true
+          secretName: harbor-tls-secret
+
+
