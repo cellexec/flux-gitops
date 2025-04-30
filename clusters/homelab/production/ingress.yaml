@@ -23,9 +23,10 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: strip-harbor-prefix
+  name: rewrite-harbor-prefix
   namespace: production
 spec:
-  stripPrefix:
-    prefixes:
-      - /harbor
+  replacePathRegex:
+    regex: "^/harbor/(.*)"
+    replacement: "/$1"
+
