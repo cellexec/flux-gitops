@@ -14,10 +14,10 @@ spec:
         name: gitlab
         namespace: flux-system
   values:
+    certmanager-issuer:
+      email: mail@towelie.dev
     global:
       edition: ce
       hosts:
         domain: towelie.dev
-      certmanager-issuer:
-        email: mail@towelie.dev
 
