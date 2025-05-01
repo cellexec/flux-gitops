@@ -21,6 +21,10 @@ spec:
 
     - name: build-and-push
       image: quay.io/podman/stable
+      args:
+        - --destination=harbor-registry.production.svc.cluster.local:5000/production/app-darts:latest
+        - --insecure
+        - --insecure-push
       securityContext:
         privileged: true
       script: |
