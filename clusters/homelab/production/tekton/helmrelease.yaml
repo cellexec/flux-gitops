@@ -7,8 +7,8 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: tekton-pipelines
-      version: 1.0.0
+      chart: tekton-pipeline
+      version: 1.0.5
       sourceRef:
         kind: HelmRepository
         name: tekton-charts
