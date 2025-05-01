@@ -18,3 +18,5 @@ spec:
       host: tekton.towelie.dev
       tls:
         enabled: false
+      annotations:
+        kubernetes.io/ingress.class: traefic
