@@ -25,7 +25,6 @@ spec:
         privileged: true
       script: |
         cd /workspace/src
+        podman login --username admin --password YNqP7kkR3Hcf82 --tls-verify=false harbor-registry.production.svc.cluster.local:5000
         podman build -t $(params.IMAGE) .
-        podman login --username admin --password YNqP7kkR3Hcf82 harbor-registry.production.svc.cluster.local:5000
-        podman push $(params.IMAGE)
-
+        podman push --tls-verify=false $(params.IMAGE)
