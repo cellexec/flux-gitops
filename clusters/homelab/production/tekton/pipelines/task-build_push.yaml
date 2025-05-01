@@ -18,35 +18,23 @@ spec:
         git clone $(params.GIT_URL) /workspace/src
         cd /workspace/src
         git checkout $(params.GIT_REVISION)
+
     - name: build-and-push
-      image: quay.io/podman/stable
+      image: gcr.io/kaniko-project/executor:latest
       args:
-        - podman
-        - build
-        - -t
-        - $(params.IMAGE)
-        - .
+        - --dockerfile=Dockerfile
+        - --context=dir://./
+        - --destination=harbor-core.production.svc.cluster.local:5000/production/app-darts:latest
+        - --insecure
+        - --insecure-push
       securityContext:
         privileged: true
       volumeMounts:
-        - mountPath: /root/.config/containers
-          name: podman-config
-    - name: podman-login
-      image: quay.io/podman/stable
-      args:
-        - podman
-        - login
-        - --username
-        - admin
-        - --password
-        - YNqP7kkR3Hcf82
-        - --tls-verify=false
-        - harbor-core.production.svc.cluster.local
-      volumeMounts:
-        - mountPath: /root/.config/containers
-          name: podman-config
+        - mountPath: /kaniko/.docker
+          name: docker-config
 
   volumes:
-    - name: podman-config
-      emptyDir: {}
+    - name: docker-config
+      secret:
+        secretName: harbor-docker-config
 
