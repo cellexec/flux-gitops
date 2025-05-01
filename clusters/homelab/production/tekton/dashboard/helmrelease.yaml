@@ -7,7 +7,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: tekton-pipeline
+      chart: tekton-dashboard
       version: 0.1.2
       sourceRef:
         kind: HelmRepository
