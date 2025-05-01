@@ -15,7 +15,4 @@ spec:
         namespace: flux-system
   values:
     ingress:
-      className: traefic
-      host: tekton.towelie.dev
-      tls:
-        enabled: false
+      host: "" # disable, since helm chart doesnt support traefic
