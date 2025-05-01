@@ -20,17 +20,12 @@ spec:
         git checkout $(params.GIT_REVISION)
 
     - name: build-and-push
-      image: gcr.io/kaniko-project/executor:latest
-      args:
-        - --dockerfile=Dockerfile
-        - --context=dir://./
-        - --destination=harbor-registry.production.svc.cluster.local:5000/production/app-darts:latest
-        - --insecure
-        - --insecure-push
+      image: quay.io/podman/stable
       securityContext:
         privileged: true
       script: |
         cd /workspace/src
         podman build -t $(params.IMAGE) .
-        podman login --username admin --password YNqP7kkR3Hcf82 harbor.towelie.dev
+        podman login --username admin --password YNqP7kkR3Hcf82 harbor-registry.production.svc.cluster.local:5000
         podman push $(params.IMAGE)
+
