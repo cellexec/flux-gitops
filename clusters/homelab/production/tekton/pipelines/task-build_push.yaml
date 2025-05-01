@@ -18,7 +18,6 @@ spec:
         git clone $(params.GIT_URL) /workspace/src
         cd /workspace/src
         git checkout $(params.GIT_REVISION)
-
     - name: build-and-push
       image: quay.io/podman/stable
       securityContext:
