@@ -20,10 +20,33 @@ spec:
         git checkout $(params.GIT_REVISION)
     - name: build-and-push
       image: quay.io/podman/stable
+      args:
+        - podman
+        - build
+        - -t
+        - $(params.IMAGE)
+        - .
       securityContext:
         privileged: true
-      script: |
-        cd /workspace/src
-        podman login --username admin --password YNqP7kkR3Hcf82 --tls-verify=false harbor-core.production.svc.cluster.local
-        podman build -t $(params.IMAGE) .
-        podman push --tls-verify=false $(params.IMAGE)
+      volumeMounts:
+        - mountPath: /root/.config/containers
+          name: podman-config
+    - name: podman-login
+      image: quay.io/podman/stable
+      args:
+        - podman
+        - login
+        - --username
+        - admin
+        - --password
+        - YNqP7kkR3Hcf82
+        - --tls-verify=false
+        - harbor-core.production.svc.cluster.local
+      volumeMounts:
+        - mountPath: /root/.config/containers
+          name: podman-config
+
+  volumes:
+    - name: podman-config
+      emptyDir: {}
+
