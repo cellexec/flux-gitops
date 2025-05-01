@@ -15,8 +15,7 @@ spec:
         namespace: flux-system
   values:
     ingress:
+      className: traefic
       host: tekton.towelie.dev
       tls:
         enabled: false
-    annotations:
-      kubernetes.io/ingress.class: traefic
