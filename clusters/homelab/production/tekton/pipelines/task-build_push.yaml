@@ -4,15 +4,6 @@ metadata:
   name: build-and-push-nextjs
   namespace: tekton-pipelines
 spec:
-  stepTemplate:
-    securityContext:
-      allowPrivilegeEscalation: false
-      runAsNonRoot: true
-      seccompProfile:
-        type: RuntimeDefault
-      capabilities:
-        drop:
-          - ALL
   params:
     - name: IMAGE
       type: string
