@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: nextjs-build-run
+  namespace: tekton-pipelines
+spec:
+  pipelineRef:
+    name: nextjs-build-pipeline
+  params:
+    - name: IMAGE
+      value: harbor.towelie.dev/library/app-darts:latest
+    - name: GIT_URL
+      value: https://github.com/cellexec/app-darts.git
+    - name: GIT_REVISION
+      value: main

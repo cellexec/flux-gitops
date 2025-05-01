@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-and-push-nextjs
+  namespace: tekton-pipelines
+spec:
+  params:
+    - name: IMAGE
+      type: string
+    - name: GIT_URL
+      type: string
+    - name: GIT_REVISION
+      type: string
+  steps:
+    - name: git-clone
+      image: alpine/git
+      script: |
+        git clone $(params.GIT_URL) /workspace/src
+        cd /workspace/src
+        git checkout $(params.GIT_REVISION)
+
+    - name: build-and-push
+      image: quay.io/podman/stable
+      securityContext:
+        privileged: true
+      script: |
+        cd /workspace/src
+        podman build -t $(params.IMAGE) .
+        podman login --username admin --password YNqP7kkR3Hcf82 harbor.towelie.dev
+        podman push $(params.IMAGE)
