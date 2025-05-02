@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+- https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 - environments.yaml
