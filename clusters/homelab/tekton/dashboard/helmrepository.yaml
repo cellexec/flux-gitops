@@ -1,8 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: tekton-dashboard-charts
-  namespace: flux-system
-spec:
-  url: https://jenkins-x.github.io/tekton-dashboard-helm-chart
-  interval: 1h
