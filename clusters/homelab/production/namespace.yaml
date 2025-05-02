@@ -7,3 +7,4 @@ metadata:
     app.kubernetes.io/managed-by: flux
   annotations:
     fluxcd.io/automated: true
+    kustomize.toolkit.fluxcd.io/prune: "true"
