@@ -4,6 +4,6 @@ metadata:
   name: traefik
   namespace: kube-system
 spec:
-  interval: 5m
+  interval: 10m
   url: https://traefik.github.io/charts
 
