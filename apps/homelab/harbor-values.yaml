@@ -11,10 +11,11 @@ spec:
   # https://github.com/goharbor/harbor-helm/blob/main/values.yaml
   values:
     externalURL: "https://harbor.towelie.dev"
+    harborAdminPassword: "Harbor123456"
     expose:
       ingress:
+        enabled: true
         hosts:
           core: harbor.towelie.dev
-    harborAdminPassword: "Harbor123456"
 
 
