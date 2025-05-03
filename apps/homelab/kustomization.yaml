@@ -3,10 +3,14 @@ kind: Kustomization
 resources:
   - ../base/podinfo
   - ../base/harbor
+  - ../base/traefik
 patches:
   - path: podinfo-values.yaml
     target:
       kind: HelmRelease
   - path: harbor-values.yaml
+    target:
+      kind: HelmRelease
+  - path: traefik-values.yaml
     target:
       kind: HelmRelease
