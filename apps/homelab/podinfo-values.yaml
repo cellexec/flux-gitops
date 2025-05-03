@@ -11,7 +11,7 @@ spec:
   # https://github.com/stefanprodan/podinfo/blob/master/charts/podinfo/values.yaml
   values:
     ingress:
-      className: traefic
+      className: traefik
       hosts:
         - host: podinfo.towelie.dev
           paths:
