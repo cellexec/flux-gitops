@@ -9,4 +9,3 @@ spec:
       version: ">=1.0.0"
   # Default values
   # https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
-  values:
