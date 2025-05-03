@@ -1,12 +1,12 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: harbor
-  namespace: production
+  namespace: harbor
 spec:
   chart:
     spec:
-      version: 1.17.0
+      version: ">=1.0.0"
   values:
     externalURL: "https://harbor.towelie.dev"
     expose:
@@ -14,6 +14,5 @@ spec:
         hosts:
           core: harbor.towelie.dev
     harborAdminPassword: "Harbor123456"
-
 
 

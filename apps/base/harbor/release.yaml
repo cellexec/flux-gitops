@@ -2,9 +2,8 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: harbor
-  namespace: production
+  namespace: harbor
 spec:
-  interval: 5m0s
   releaseName: harbor
   chart:
     spec:
@@ -14,16 +13,22 @@ spec:
         kind: HelmRepository
         name: harbor
         namespace: flux-system
+  interval: 5m0s
+  install:
+    remediation:
+      retries: 3
+  # Default values
+  # https://github.com/goharbor/harbor-helm/blob/main/values.yaml
   values:
-    externalURL: https://harbor.towelie.dev
+    externalURL: ""
     expose:
       type: ingress
       ingress:
         enabled: true
         hosts:
-          core: harbor.towelie.dev
-          notary: notary.towelie.dev
-          chartmuseum: chartmuseum.towelie.dev
+          core: harbor.your_domain.com
+          notary: notary.your_domain.com
+          chartmuseum: chartmuseum.your_domain.com
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: web
           ingress.kubernetes.io/proxy-body-size: 1Gi
@@ -31,6 +36,6 @@ spec:
         ingressClass: traefik
         tls:
           enabled: false
-    harborAdminPassword: "YNqP7kkR3Hcf82"
+    harborAdminPassword: "Harbor12345"
 
 
