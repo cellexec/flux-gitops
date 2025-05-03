@@ -12,7 +12,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: harbor
-        namespace: flux-system
   interval: 5m0s
   install:
     remediation:
