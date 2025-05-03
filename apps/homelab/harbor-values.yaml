@@ -7,6 +7,8 @@ spec:
   chart:
     spec:
       version: ">=1.0.0"
+  # Default values
+  # https://github.com/goharbor/harbor-helm/blob/main/values.yaml
   values:
     externalURL: "https://harbor.towelie.dev"
     expose:

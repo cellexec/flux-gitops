@@ -7,8 +7,11 @@ spec:
   chart:
     spec:
       version: ">=1.0.0"
+  # Default values
+  # https://github.com/stefanprodan/podinfo/blob/master/charts/podinfo/values.yaml
   values:
     ingress:
+      className: traefic
       hosts:
         - host: podinfo.towelie.dev
           paths:
