@@ -20,3 +20,13 @@ kubectl create secret tls harbor-cert \
 
 # careful
 when updating coredns apply a new yaml in gitops, otherwise default values might be missing
+
+# current dns setup
+```
+harbor.towelie.dev {
+    hosts {
+        192.168.178.51 harbor.towelie.dev
+        fallthrough
+    }
+}
+```
