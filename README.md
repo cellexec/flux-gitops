@@ -17,3 +17,6 @@ kubectl create secret tls harbor-cert \
   --dry-run=client \
   -o yaml > apps/base/harbor/cert.yaml
 ```
+
+# careful
+when updating coredns apply a new yaml in gitops, otherwise default values might be missing
