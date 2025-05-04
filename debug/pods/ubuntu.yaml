@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-test
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu:latest
+    command: ["/bin/bash", "-c", "apt-get update && apt-get install -y curl wget iputils-ping net-tools vim && tail -f /dev/null"]
+    stdin: true
+    tty: true
+
