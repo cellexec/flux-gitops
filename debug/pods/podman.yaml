@@ -16,6 +16,7 @@ spec:
         - mountPath: /tmp/container-storage
           name: container-storage
       securityContext:
+        privileged: true  # Run the container in privileged mode
         runAsUser: 1000  # This ensures the container runs as user ID 1000
   volumes:
     - name: container-storage
