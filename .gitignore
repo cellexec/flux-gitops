@@ -1,2 +1,8 @@
 # ignore configured .env
 .env
+
+# ignore keys & certificates
+*.key
+*.crt
+
+
