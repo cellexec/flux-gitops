@@ -4,7 +4,7 @@ metadata:
   name: debug-podman
 spec:
   securityContext:
-    fsGroup: 1000  # This ensures that the volume is owned by group ID 1000
+    fsGroup: 1000
   containers:
     - name: debug-podman
       image: quay.io/podman/stable:latest
@@ -16,8 +16,7 @@ spec:
         - mountPath: /tmp/container-storage
           name: container-storage
       securityContext:
-        privileged: true  # Run the container in privileged mode
-        runAsUser: 1000  # This ensures the container runs as user ID 1000
+        privileged: true
   volumes:
     - name: container-storage
       emptyDir: {}
