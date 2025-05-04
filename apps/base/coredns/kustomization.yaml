@@ -4,5 +4,21 @@ namespace: kube-system
 resources:
   - custom-hosts.yaml
 
-patchesStrategicMerge:
-  - deployment-patch.yaml
+patches:
+  - target:
+      kind: Deployment
+      name: coredns
+      namespace: kube-system
+    patch: |-
+      - op: add
+        path: /spec/template/spec/volumes/-
+        value:
+          name: custom-coredns-config
+          configMap:
+            name: coredns-hosts-override
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/-
+        value:
+          name: custom-coredns-config
+          mountPath: /etc/coredns/custom
+
