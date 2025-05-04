@@ -5,4 +5,5 @@ resources:
   - namespace.yaml
   - repo.yaml
   - release.yaml
+  - cert.yaml
 
