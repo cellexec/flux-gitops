@@ -21,4 +21,6 @@ patches:
         value:
           name: custom-coredns-config
           mountPath: /etc/coredns/custom
-
+      - op: add
+        path: /spec/template/metadata/annotations/reload-at
+        value: "flux-{{timestamp}}"
