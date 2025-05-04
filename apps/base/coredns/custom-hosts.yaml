@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: coredns-hosts-override
+  name: coredns-custom
   namespace: kube-system
 data:
   NodeHosts: |

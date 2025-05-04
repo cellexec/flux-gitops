@@ -15,7 +15,7 @@ patches:
         value:
           name: custom-coredns-config
           configMap:
-            name: coredns-hosts-override
+            name: coredns-custom
       - op: add
         path: /spec/template/spec/containers/0/volumeMounts/-
         value:
