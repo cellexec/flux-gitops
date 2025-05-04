@@ -4,6 +4,7 @@ resources:
   - ../base/traefik
   - ../base/podinfo
   - ../base/harbor
+  - ../base/coredns
 patches:
   - path: traefik-values.yaml
     target:
