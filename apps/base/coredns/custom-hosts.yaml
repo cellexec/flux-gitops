@@ -1,12 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: coredns-hosts-override
+  name: coredns
   namespace: kube-system
 data:
-  hosts.override: |
-    hosts {
-      192.168.178.51 harbor.towelie.dev harbor2.towelie.dev
-      fallthrough
-    }
+  NodeHosts: |
+    192.168.178.51 homelab
+    192.168.178.51 harbor.towelie.dev
 
