@@ -7,3 +7,5 @@ spec:
   interval: 1h
   type: oci
   url: oci://harbor.towelie.dev/library
+  secretRef:
+    name: harbor-credentials
