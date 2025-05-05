@@ -18,9 +18,9 @@ spec:
         secret:
           secretName: harbor-tls
       ingress:
+        enabled: true
         tls:
           enabled: true
-        enabled: true
         className: traefik
         hosts:
           core: harbor.towelie.dev
