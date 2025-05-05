@@ -15,7 +15,7 @@ spec:
     expose:
       tls:
         enabled: true
-        secretName: harbor-cert
+        secretName: harbor-tls
       ingress:
         enabled: true
         hosts:
