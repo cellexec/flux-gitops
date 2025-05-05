@@ -14,12 +14,15 @@ spec:
       DRONE_SERVER_HOST: "drone.towelie.dev"
     ingress:
       enabled: true
+      className: traefik
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
         traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
       hosts:
-        - drone.towelie.dev
+        - host: drone.towelie.dev
+          paths:
+            - path: /
       tls:
         - secretName: drone-tls
           hosts:
