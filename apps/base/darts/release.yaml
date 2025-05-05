@@ -10,7 +10,7 @@ spec:
       chart: darts
       version: 0.1.0
       sourceRef:
-        kind: OCIRepository
+        kind: HelmRepository
         name: darts
   interval: 5m0s
   install:
