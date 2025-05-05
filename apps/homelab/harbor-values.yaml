@@ -18,6 +18,8 @@ spec:
         secret:
           secretName: harbor-tls
       ingress:
+        tls:
+          enabled: true
         enabled: true
         className: traefik
         hosts:
