@@ -1,0 +1,31 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: drone
+  namespace: drone
+spec:
+  chart:
+    spec:
+      version: ">=1.0.0"
+  # Default values
+  # https://github.com/drone/charts/blob/master/charts/drone/values.yaml
+  values:
+    ingress:
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+      hosts:
+        - drone.towelie.dev
+      tls:
+        - secretName: drone-tls
+          hosts:
+            - drone.towelie.dev
+    server:
+      open:
+        enabled: true
+    secrets:
+      drone:
+        username: admin
+        password: Drone123456
