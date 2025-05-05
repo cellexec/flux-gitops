@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: ">=1.0.0"
+      version: 0.6.5
   # Default values
   # https://github.com/drone/charts/blob/master/charts/drone/values.yaml
   values:
