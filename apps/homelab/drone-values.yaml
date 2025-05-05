@@ -23,6 +23,7 @@ spec:
         - host: drone.towelie.dev
           paths:
             - path: /
+              pathType: Prefix
       tls:
         - secretName: drone-tls
           hosts:
