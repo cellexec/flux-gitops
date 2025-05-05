@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../base/podinfo
   - ../base/harbor
-  - ../base/drone
+  - ../base/darts
 patches:
   - path: podinfo-values.yaml
     target:
@@ -11,6 +11,6 @@ patches:
   - path: harbor-values.yaml
     target:
       kind: HelmRelease
-  - path: drone-values.yaml
+  - path: darts-values.yaml
     target:
       kind: HelmRelease
