@@ -11,13 +11,17 @@ spec:
     externalURL: "https://harbor.towelie.dev"
     harborAdminPassword: "Harbor123456"
     expose:
+      type: ingress
+      tls:
+        enabled: true
+        certSource: secret
+        secret:
+          secretName: harbor-tls
       ingress:
         enabled: true
+        className: traefik
         hosts:
           core: harbor.towelie.dev
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        tls:
-          enabled: true
-          secretName: harbor-tls
 
