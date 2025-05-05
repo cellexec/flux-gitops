@@ -6,3 +6,5 @@ metadata:
 spec:
   interval: 1h
   url: https://helm.goharbor.io
+  secretRef:
+    name: harbor-credentials
