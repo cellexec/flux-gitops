@@ -8,3 +8,4 @@ spec:
   url: harbor.towelie.dev/library
   secretRef:
     name: harbor-credentials
+    namespace: darts
