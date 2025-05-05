@@ -7,21 +7,17 @@ spec:
   chart:
     spec:
       version: ">=1.0.0"
-  # Default values
-  # https://github.com/goharbor/harbor-helm/blob/main/values.yaml
   values:
     externalURL: "https://harbor.towelie.dev"
     harborAdminPassword: "Harbor123456"
     expose:
-      tls:
-        enabled: true
-        secretName: harbor-tls
       ingress:
         enabled: true
         hosts:
           core: harbor.towelie.dev
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
-
-
+        tls:
+          enabled: true
+          secretName: harbor-tls
 
