@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: darts
 resources:
   - namespace.yaml
+  - harbor-secret.yaml
   - repo.yaml
   - release.yaml
   - certificate.yaml
