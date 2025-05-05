@@ -10,6 +10,8 @@ spec:
   # Default values
   # https://github.com/drone/charts/blob/master/charts/drone/values.yaml
   values:
+    env:
+      DRONE_SERVER_HOST: "drone.towelie.dev"
     ingress:
       enabled: true
       annotations:
