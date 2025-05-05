@@ -1,9 +1,10 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: darts
   namespace: darts
 spec:
   interval: 1h
-  type: oci
   url: oci://harbor.towelie.dev/library/darts
+  ref:
+    tag: latest
