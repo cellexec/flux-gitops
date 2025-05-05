@@ -1,10 +1,10 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: darts
   namespace: darts
 spec:
   interval: 1h
-  url: https://harbor.towelie.dev/library
+  url: oci://harbor.towelie.dev/library
   secretRef:
     name: harbor-credentials
