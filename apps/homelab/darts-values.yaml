@@ -9,9 +9,9 @@ spec:
   chart:
     spec:
       chart: darts
-      version: ">=0.1.0"
-      sourceRef:
-        kind: HelmRepository
+      version: "0.1.0"
+      chartRef:
+        kind: OCIRepository
         name: darts
   # Default values
   # TODO: Add Link
