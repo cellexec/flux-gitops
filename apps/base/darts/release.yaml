@@ -4,6 +4,7 @@ metadata:
   name: darts
   namespace: darts
 spec:
+  interval: 5m0s
   releaseName: darts
   chart:
     spec:
@@ -12,7 +13,4 @@ spec:
       sourceRef:
         kind: OCIRepository
         name: darts
-  interval: 5m0s
-  install:
-    remediation:
-      retries: 3
+        namespace: darts

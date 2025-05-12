@@ -4,6 +4,7 @@ metadata:
   name: darts
   namespace: darts
 spec:
+  interval: 5m0s
   releaseName: darts
   chart:
     spec:
@@ -12,22 +13,26 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: darts
-  interval: 5m0s
-  install:
-    remediation:
-      retries: 3
   # Default values
-  # https://github.com/goharbor/harbor-helm/blob/main/values.yaml
+  # TODO: Add Link
   values:
+    imagePullSecrets:
+      - name: harbor-credentials
+    image:
+      tag: "1.0.0"
     ingress:
       enabled: true
-      className: "traefik"
-      annotations: 
+      className: traefik
+      annotations:
         - kubernetes.io/ingress.class: traefik
+        - traefik.ingress.kubernetes.io/router.entrypoints: websecure
         - kubernetes.io/tls-acme: "true"
       hosts:
         - host: darts.towelie.dev
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
     tls:
-      - secretName: darts-tls
-        hosts:
-          - darts.towelie.dev
+      - hosts:
+          - "darts.towelie.dev"
+        secretName: darts-tls
