@@ -10,7 +10,7 @@ spec:
     spec:
       chart: darts
       version: "0.1.0"
-      sourceRef:
+      chartRef:
         kind: OCIRepository
         name: darts
         namespace: darts
