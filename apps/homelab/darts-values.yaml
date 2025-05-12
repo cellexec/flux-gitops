@@ -10,9 +10,10 @@ spec:
     spec:
       chart: darts
       version: "0.1.0"
-      chartRef:
+      sourceRef:
         kind: OCIRepository
         name: darts
+        namespace: darts
   # Default values
   # TODO: Add Link
   values:
