@@ -13,28 +13,3 @@ spec:
         kind: HelmRepository
         name: harbor
   interval: 5m0s
-  install:
-    remediation:
-      retries: 3
-  # Default values
-  # https://github.com/goharbor/harbor-helm/blob/main/values.yaml
-  values:
-    externalURL: ""
-    expose:
-      type: ingress
-      ingress:
-        enabled: true
-        hosts:
-          core: harbor.your_domain.com
-          notary: notary.your_domain.com
-          chartmuseum: chartmuseum.your_domain.com
-        annotations:
-          ingress.kubernetes.io/force-ssl-redirect: "false"
-          ingress.kubernetes.io/proxy-body-size: "0"
-          traefik.ingress.kubernetes.io/router.entrypoints: web
-        ingressClass: traefik
-        tls:
-          enabled: false
-    harborAdminPassword: "Harbor12345"
-
-
