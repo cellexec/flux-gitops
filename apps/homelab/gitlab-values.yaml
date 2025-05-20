@@ -14,22 +14,21 @@ spec:
         name: gitlab
   interval: 5m0s
   values:
-    certmanager-issuer:
-      email: marcelmaier1996@outlook.de
     global:
       hosts:
         domain: gitlab.towelie.dev
-        externalIP: 91.4.94.120
       ingress:
+        class: traefik                   
         configureCertmanager: false
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
         tls:
           enabled: true
       edition: ce
-    certmanager:
-      install: false
+
     nginx-ingress:
-      enabled: false
-    ingress:
-      class: traefik
+      enabled: false                   
+
+    certmanager:
+      install: false                   
+
