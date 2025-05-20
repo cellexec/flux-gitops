@@ -22,7 +22,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: woodpecker
-        namespace: flux-system
+        namespace: woodpecker
       version: "0.15.0"
   values:
     server:
