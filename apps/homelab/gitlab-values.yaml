@@ -19,14 +19,14 @@ spec:
       hosts:
         domain: gitlab.towelie.dev
         externalIP: 91.4.94.120
-  ingress:
-    provider: traefik
-    annotations: 
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      kubernetes.io/ingress.class: "traefik"
-      kubernetes.io/tls-acme: "true"
-      cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
-    tls:
-      enabled: true
-      secretName: gitlab-cert
+      ingress:
+        provider: traefik
+        annotations: 
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          kubernetes.io/ingress.class: "traefik"
+          kubernetes.io/tls-acme: "true"
+          cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
+        tls:
+          enabled: true
+          secretName: gitlab-cert
 
