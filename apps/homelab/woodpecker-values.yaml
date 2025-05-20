@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: woodpecker
         namespace: woodpecker
-      version: "0.15.0"
+      version: "3.1.1"
   values:
     server:
       admin:
