@@ -17,19 +17,19 @@ spec:
     certmanager-issuer:
       email: marcelmaier1996@outlook.de
     global:
-      edition: ce
       hosts:
         domain: gitlab.towelie.dev
         externalIP: 91.4.94.120
       ingress:
-        ingressClassName: traefik
-        provider: traefik
-        annotations: 
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          kubernetes.io/ingress.class: "traefik"
-          kubernetes.io/tls-acme: "true"
+        configureCertmanager: false
+        annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
         tls:
           enabled: true
-          secretName: gitlab-cert
-
+      edition: ce
+    certmanager:
+      install: false
+    nginx-ingress:
+      enabled: false
+    ingress:
+      class: traefik
