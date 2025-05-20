@@ -16,7 +16,7 @@ spec:
         enabled: true
         certSource: secret
         secret:
-          secretName: harbor-tls
+          secretName: harbor-cert
       ingress:
         enabled: true
         tls:
@@ -26,4 +26,6 @@ spec:
           core: harbor.towelie.dev
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
-
+          kubernetes.io/ingress.class: "traefik"
+          kubernetes.io/tls-acme: "true"
+          cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
