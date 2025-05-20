@@ -14,6 +14,9 @@ spec:
         namespace: woodpecker
       version: "3.1.1"
   values:
+    env:
+      - name: WOODPECKER_BACKEND_K8S_NAMESPACE
+        value: woodpecker
     server:
       admin:
         username: admin
