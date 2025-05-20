@@ -1,0 +1,65 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: woodpecker
+  namespace: woodpecker
+spec:
+  type: oci
+  interval: 5m
+  url: oci://ghcr.io/woodpecker-ci/helm
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: woodpecker
+  namespace: woodpecker
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: woodpecker
+      sourceRef:
+        kind: HelmRepository
+        name: woodpecker
+        namespace: flux-system
+      version: "0.15.0"
+  values:
+    server:
+      admin:
+        username: admin
+        password: changeme123
+      host: woodpecker.towelie.dev
+      agentSecret: woodpecker-agent-secret
+    agent:
+      enabled: true
+      env:
+        - name: WOODPECKER_AGENT_SECRET
+          value: woodpecker-agent-secret
+    ingress:
+      enabled: true
+      className: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
+      hosts:
+        - host: woodpecker.towelie.dev
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - woodpecker.towelie.dev
+          secretName: woodpecker-cert
+    persistence:
+      enabled: true
+      size: 1Gi
+    env:
+      - name: WOODPECKER_GITEA
+        value: "true"
+      - name: WOODPECKER_GITEA_URL
+        value: "https://gitea.towelie.dev"
+      - name: WOODPECKER_HOST
+        value: "https://woodpecker.towelie.dev"
+      - name: WOODPECKER_OPEN
+        value: "true"
+

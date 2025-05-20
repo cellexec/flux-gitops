@@ -1,0 +1,58 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: woodpecker
+  namespace: woodpecker
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: woodpecker
+      sourceRef:
+        kind: HelmRepository
+        name: woodpecker
+        namespace: flux-system
+      version: "0.15.0"
+  values:
+    server:
+      admin:
+        username: admin
+        password: changeme123
+      host: woodpecker.towelie.dev
+      agentSecret: woodpecker-agent-secret
+      env:
+        - name: WOODPECKER_GITHUB
+          value: "true"
+        - name: WOODPECKER_GITHUB_CLIENT
+          value: "Ov23liMalJqi2uLfRNBf"
+        - name: WOODPECKER_GITHUB_SECRET
+          value: "5013aa99841d7e6716a9c3f58f449d5b21ce3c96"
+        - name: WOODPECKER_HOST
+          value: "https://woodpecker.towelie.dev"
+        - name: WOODPECKER_AGENT_SECRET
+          value: woodpecker-agent-secret
+        - name: WOODPECKER_OPEN
+          value: "true"
+    agent:
+      enabled: true
+      env:
+        - name: WOODPECKER_AGENT_SECRET
+          value: woodpecker-agent-secret
+    ingress:
+      enabled: true
+      className: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
+      hosts:
+        - host: woodpecker.towelie.dev
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - woodpecker.towelie.dev
+          secretName: woodpecker-cert
+    persistence:
+      enabled: true
+      size: 1Gi
+
