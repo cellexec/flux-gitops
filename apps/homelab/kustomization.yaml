@@ -1,13 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # - ../base/harbor
+  - ../base/harbor
   - ../base/longhorn
 patches:
-  # - path: harbor-values.yaml
-  #   target:
-  #     kind: HelmRelease
-  #     namespace: harbor
+  - path: harbor-values.yaml
+    target:
+      kind: HelmRelease
+      namespace: harbor
   - path: longhorn-values.yaml
     target:
       kind: HelmRelease
