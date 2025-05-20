@@ -21,8 +21,6 @@ spec:
       host: woodpecker.towelie.dev
       agentSecret: woodpecker-agent-secret
       env:
-        - name: WOODPECKER_BACKEND_K8S_NAMESPACE
-          value: woodpecker
         - name: WOODPECKER_GITHUB
           value: "true"
         - name: WOODPECKER_GITHUB_CLIENT
@@ -35,11 +33,15 @@ spec:
           value: woodpecker-agent-secret
         - name: WOODPECKER_OPEN
           value: "true"
+        - name: WOODPECKER_BACKEND_K8S_NAMESPACE
+          value: woodpecker
     agent:
       enabled: true
       env:
         - name: WOODPECKER_AGENT_SECRET
           value: woodpecker-agent-secret
+        - name: WOODPECKER_BACKEND_K8S_NAMESPACE
+          value: woodpecker
     ingress:
       enabled: true
       className: traefik
