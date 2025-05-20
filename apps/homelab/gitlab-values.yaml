@@ -19,9 +19,7 @@ spec:
         domain: towelie.dev
       ingress:
         class: traefik                   
-        configureCertmanager: false
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
+        configureCertmanager: true
         tls:
           enabled: true
       edition: ce
