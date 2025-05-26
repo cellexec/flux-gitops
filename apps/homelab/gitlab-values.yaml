@@ -30,5 +30,10 @@ spec:
     certmanager:
       install: false                   
 
+    certmanager-issuer:
+      email: mail@towelie.dev
+
     kas:
       enabled: false                   
+
+
