@@ -39,4 +39,20 @@ spec:
       create: true
       passwordHash: $2a$10$dva1kMeaL9pAOnMlO4I7vuphuwYQzb1.Fk6kkQlOIZofaZFo6DoV2
       username: admin
+    ingress:
+      enabled: true
+      className: "traefik"
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        kubernetes.io/tls-acme: "true"
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      hosts:
+        - host: flux.towelie.dev
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+        - secretName: weave-cert
+          hosts:
+            - flux.towelie.dev
 
