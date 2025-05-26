@@ -30,3 +30,5 @@ spec:
     certmanager:
       install: false                   
 
+    kas:
+      enabled: false                   
