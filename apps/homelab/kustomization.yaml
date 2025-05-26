@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../base/harbor
   - ../base/longhorn
-  - ../base/woodpecker
+  # - ../base/woodpecker
   - ../base/gitlab
 patches:
   - path: harbor-values.yaml
@@ -14,10 +14,10 @@ patches:
     target:
       kind: HelmRelease
       namespace: longhorn-system
-  - path: woodpecker-values.yaml
-    target:
-      kind: HelmRelease
-      namespace: woodpecker
+  # - path: woodpecker-values.yaml
+  #   target:
+  #     kind: HelmRelease
+  #     namespace: woodpecker
   - path: gitlab-values.yaml
     target:
       kind: HelmRelease
