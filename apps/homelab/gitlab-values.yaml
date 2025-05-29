@@ -41,3 +41,12 @@ spec:
     certmanager-issuer:
       email: mail@towelie.dev
 
+    traefik:
+      install: true
+      ports:
+        gitlab-shell:
+          expose: true
+          port: 2222
+          exposedPort: 22
+
+
