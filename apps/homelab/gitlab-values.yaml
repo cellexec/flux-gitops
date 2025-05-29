@@ -26,6 +26,8 @@ spec:
         tls:
           enabled: true
       edition: ce
+      kas:
+        enabled: false                   
 
     nginx-ingress:
       enabled: false                   
