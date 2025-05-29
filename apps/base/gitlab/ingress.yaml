@@ -1,6 +1,5 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
-namespace: gitlab
 metadata:
   name: gitlab-gitlab-shell
 spec:
