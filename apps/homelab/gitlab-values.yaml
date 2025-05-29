@@ -28,8 +28,9 @@ spec:
           enabled: true
       kas:
         enabled: false                   
-      prometheus:
-        install: false                   
+
+    prometheus:
+      install: false                   
 
     nginx-ingress:
       enabled: false                   
