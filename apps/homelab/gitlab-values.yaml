@@ -15,6 +15,9 @@ spec:
   interval: 5m0s
   values:
     global:
+      initialRootPassword:
+        secret: gitlab-initial-root-password
+        key: password
       hosts:
         domain: towelie.dev
       ingress:
