@@ -4,7 +4,7 @@ metadata:
   name: gitlab-gitlab-shell
 spec:
   entryPoints:
-    - ssh
+    - gitlab-shell
   routes:
   - match: HostSNI(`*`)
     services:
