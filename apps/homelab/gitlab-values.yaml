@@ -15,19 +15,21 @@ spec:
   interval: 5m0s
   values:
     global:
+      edition: ce
+      hosts:
+        domain: towelie.dev
       initialRootPassword:
         secret: gitlab-initial-root-password
         key: password
-      hosts:
-        domain: towelie.dev
       ingress:
         class: traefik                   
         configureCertmanager: true
         tls:
           enabled: true
-      edition: ce
       kas:
         enabled: false                   
+      prometheus:
+        install: false                   
 
     nginx-ingress:
       enabled: false                   
@@ -37,8 +39,4 @@ spec:
 
     certmanager-issuer:
       email: mail@towelie.dev
-
-    kas:
-      enabled: false                   
-
 
