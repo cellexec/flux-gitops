@@ -21,6 +21,13 @@ spec:
       initialRootPassword:
         secret: gitlab-initial-root-password
         key: password
+      traefik:
+        install: true
+        ports:
+          gitlab-shell:
+            expose: true
+            port: 2222
+            exposedPort: 22
       ingress:
         class: traefik                   
         configureCertmanager: true
