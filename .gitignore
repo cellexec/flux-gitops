@@ -1,3 +1,7 @@
+# sops-secrets
+secrets.yaml
+**/secret-templates/
+
 # ignore configured .env
 .env
 
