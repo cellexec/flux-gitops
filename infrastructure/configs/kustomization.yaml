@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - cloudflare-secret.yaml
   - cluster-issuer.yaml
+  - ingress-namespace.yaml
   - wildcard-cert.yaml
