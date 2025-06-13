@@ -17,7 +17,7 @@ spec:
   releaseName: immich
   chart:
     spec:
-      chart: charts/immich
+      chart: immich
       version: 0.9.3
       sourceRef:
         kind: HelmRepository
