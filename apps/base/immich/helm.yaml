@@ -20,6 +20,7 @@ spec:
     disableWait: true
   releaseName: immich
   interval: 5m0s
+  timeout: 0m30s
   chart:
     spec:
       chart: immich
