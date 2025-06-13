@@ -45,7 +45,7 @@ spec:
         enabled: true
       persistence:
         library:
-          existingClaim:
+          existingClaim: "immich-data-pvc"
 
       configuration:
         trash:
