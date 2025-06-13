@@ -19,6 +19,7 @@ spec:
   upgrade:
     disableWait: true
   releaseName: immich
+  interval: 5m0s
   chart:
     spec:
       chart: immich
@@ -26,78 +27,3 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: immich
-  interval: 5m0s
-  values:
-    env:
-      REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
-      DB_HOSTNAME: "{{ .Release.Name }}-postgresql"
-      DB_USERNAME: "{{ .Values.postgresql.global.postgresql.auth.username }}"
-      DB_DATABASE_NAME: "{{ .Values.postgresql.global.postgresql.auth.database }}"
-      # -- You should provide your own secret outside of this helm-chart and use `postgresql.global.postgresql.auth.existingSecret` to provide credentials to the postgresql instance
-      DB_PASSWORD: "{{ .Values.postgresql.global.postgresql.auth.password }}"
-      IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
-
-    image:
-      tag: v1.119.0
-
-    immich:
-      metrics:
-        enabled: true
-      persistence:
-        library:
-          existingClaim: "immich-data-pvc"
-
-      configuration:
-        trash:
-          enabled: false
-          days: 30
-        storageTemplate:
-          enabled: true
-          template: "{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}"
-
-    postgresql:
-      enabled: true
-      image:
-        repository: tensorchord/pgvecto-rs
-        tag: pg14-v0.2.0@sha256:739cdd626151ff1f796dc95a6591b55a714f341c737e27f045019ceabf8e8c52
-      global:
-        postgresql:
-          auth:
-            username: immich
-            database: immich
-            password: immich
-      primary:
-        containerSecurityContext:
-          readOnlyRootFilesystem: false
-        initdb:
-          scripts:
-            create-extensions.sql: |
-              CREATE EXTENSION cube;
-              CREATE EXTENSION earthdistance;
-              CREATE EXTENSION vectors;
-
-    server:
-      enabled: true
-      image:
-        repository: ghcr.io/immich-app/immich-server
-        pullPolicy: IfNotPresent
-      ingress:
-        main:
-          enabled: true
-          annotations:
-            nginx.ingress.kubernetes.io/proxy-body-size: "0"
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            kubernetes.io/ingress.class: "traefik"
-            kubernetes.io/tls-acme: "true"
-            cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
-          hosts:
-            - host: immich.towelie.dev
-              paths:
-                - path: "/"
-          tls:
-            - secretName: immich-cert
-              hosts:
-                - immich.towelie.dev
-
-    machine-learning:
-      enabled: false
