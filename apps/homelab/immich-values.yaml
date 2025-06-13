@@ -8,7 +8,6 @@ spec:
     spec:
       version: 0.9.2
   values:
-    useDeprecatedPostgresChart: true
     immich:
       persistence:
         library:
@@ -20,6 +19,7 @@ spec:
         enabled: false
     postgresql:
       enabled: true
+      useDeprecatedPostgresChart: true
       image:
         repository: tensorchord/pgvecto-rs
         tag: pg14-v0.2.0@sha256:739cdd626151ff1f796dc95a6591b55a714f341c737e27f045019ceabf8e8c52
