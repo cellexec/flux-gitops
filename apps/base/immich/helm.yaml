@@ -1,6 +1,5 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
-namespace: flux-system
 metadata:
   name: immich
   namespace: flux-system
@@ -11,7 +10,6 @@ spec:
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
-namespace: flux-system
 metadata:
   name: immich
   namespace: flux-system

@@ -12,7 +12,7 @@ patches:
   - path: immich-values.yaml
     target:
       kind: HelmRelease
-      namespace: immich
+      namespace: flux-system
   - path: gitlab-values.yaml
     target:
       kind: HelmRelease
