@@ -21,10 +21,9 @@ spec:
         repository: ghcr.io/immich-app/immich-server
         pullPolicy: IfNotPresent
       ingress:
-        enabled: true
-        ingressClassName: "traefik"
         main:
           enabled: true
+          ingressClassName: "traefik"
           annotations:
             # proxy-body-size is set to 0 to remove the body limit on file uploads
             nginx.ingress.kubernetes.io/proxy-body-size: "0"
