@@ -1,3 +1,6 @@
-woodpecker: 
+username: 
   - namespaces: [homelab]
-    value: d29vZHBlY2tlci1zZWNyZXQ=
+    value: admin
+password: 
+  - namespaces: [homelab]
+    value: change_me

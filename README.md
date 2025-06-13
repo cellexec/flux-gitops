@@ -1,33 +1,20 @@
-# genereate self signed key + certificate
+# Flux
 
+## Commands
+
+### SOPS
 
 ```bash
-openssl req -x509 -newkey rsa:4096 -nodes \
-  -keyout harbor.key \
-  -out harbor.crt \
-  -days 365 \
-  -subj "/CN=harbor.towelie.dev"
-```
+# List all GPG keys
+gpg --list-keys
 
-# create secret of genereated key + certificate
-```bash
-kubectl create secret tls harbor-cert \
-  --cert=harbor.crt \
-  --key=harbor.key \
-  --namespace harbor \
-  --dry-run=client \
-  -o yaml > apps/base/harbor/cert.yaml
-```
+# Extract secret key
+gpg --export-secret-keys --armor 981D24BE7469037F9C4D0BEEBED12DF928B52181 > gpg.asc
 
-# careful
-when updating coredns apply a new yaml in gitops, otherwise default values might be missing
+# Copy via scp
+scp gpg.asc <server>:/home/user/projects/flux-gitops
 
-# current dns setup
-```
-harbor.towelie.dev {
-    hosts {
-        192.168.178.51 harbor.towelie.dev
-        fallthrough
-    }
-}
+# Create secret from gpg
+k create secret generic sops --from-file=gpg.asc=gpg.asc
+
 ```
