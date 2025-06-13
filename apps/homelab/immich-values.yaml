@@ -8,6 +8,7 @@ spec:
     spec:
       version: 0.9.2
   values:
+    useDeprecatedPostgresChart: true
     immich:
       persistence:
         library:
