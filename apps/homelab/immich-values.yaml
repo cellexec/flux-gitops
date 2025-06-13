@@ -21,6 +21,7 @@ spec:
         repository: ghcr.io/immich-app/immich-server
         pullPolicy: IfNotPresent
       ingress:
+        ingressClassName: "traefik"
         main:
           enabled: true
           annotations:
