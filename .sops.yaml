@@ -1,0 +1,4 @@
+creation_rules:
+  - path_regex: .*/.*\.yaml$ 
+    encrypted_regex: "^(data|stringData)$"
+    pgp: 981D24BE7469037F9C4D0BEEBED12DF928B52181
