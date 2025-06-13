@@ -1,23 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../base/harbor
   - ../base/longhorn
-  # - ../base/woodpecker
   - ../base/gitlab
 patches:
-  - path: harbor-values.yaml
-    target:
-      kind: HelmRelease
-      namespace: harbor
   - path: longhorn-values.yaml
     target:
       kind: HelmRelease
       namespace: longhorn-system
-  # - path: woodpecker-values.yaml
-  #   target:
-  #     kind: HelmRelease
-  #     namespace: woodpecker
   - path: gitlab-values.yaml
     target:
       kind: HelmRelease
