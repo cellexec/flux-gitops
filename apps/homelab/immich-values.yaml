@@ -9,15 +9,42 @@ spec:
       version: 0.9.3
   values:
     useDeprecatedPostgresChart: true
+
     immich:
       persistence:
         library:
           existingClaim: "immich-data"
+
+    server:
+      enabled: true
+      image:
+        repository: ghcr.io/immich-app/immich-server
+        pullPolicy: IfNotPresent
+      ingress:
+        main:
+          enabled: true
+          annotations:
+            # proxy-body-size is set to 0 to remove the body limit on file uploads
+            nginx.ingress.kubernetes.io/proxy-body-size: "0"
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            kubernetes.io/ingress.class: "traefik"
+            kubernetes.io/tls-acme: "true"
+            cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
+          hosts:
+            - host: immich.towelie.dev
+              paths:
+                - path: "/"
+          tls:
+            - secretName: immich-tls
+              hosts:
+                - immich.towelie.dev
+
     redis:
       enabled: true
       architecture: standalone
       auth:
         enabled: false
+
     postgresql:
       enabled: true
       image:
