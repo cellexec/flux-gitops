@@ -19,6 +19,7 @@ spec:
   upgrade:
     disableWait: true
   releaseName: immich
+  targetNamespace: immich
   interval: 5m0s
   timeout: 0m30s
   chart:
