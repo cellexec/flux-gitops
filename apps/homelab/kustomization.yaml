@@ -3,11 +3,16 @@ kind: Kustomization
 resources:
   - ../base/longhorn
   - ../base/gitlab
+  - ../base/immich
 patches:
   - path: longhorn-values.yaml
     target:
       kind: HelmRelease
       namespace: longhorn-system
+  - path: immich-values.yaml
+    target:
+      kind: HelmRelease
+      namespace: immich
   - path: gitlab-values.yaml
     target:
       kind: HelmRelease
